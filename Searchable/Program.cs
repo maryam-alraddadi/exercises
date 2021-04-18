@@ -13,6 +13,7 @@ namespace Searchable
             Console.WriteLine($"Occurrences of the character 'o' {s.NumOfXChar('o')}");
             Console.WriteLine($"Occurrences of the word 'the' {s.NumOfXWord("the")}");
             Console.WriteLine($"Last index of the character 'r' {s.LastIndexOf('r')}");
+            Console.WriteLine($"Most frequent word: {s.MostFrequentWord()}");
             Console.WriteLine($"Swap every two words: {s.SwapEvery2Words()}");
         }
     }
@@ -28,8 +29,7 @@ namespace Searchable
 
         public int NumOfWords()
         {
-            string[] words = value.Split(" ");
-            return words.Length;
+            return value.Split(" ").Length;
         }
 
         public int NumOfChars()
@@ -75,9 +75,29 @@ namespace Searchable
             return -1;
         }
 
-        public string MostFrequentword()
+        public string MostFrequentWord()
         {
-            return null;
+            string[] words = value.Split(" ");
+            int count = 0;
+            string mostFrequent = null;
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                var tempCount = 0;
+                for (int j = 0; j < words.Length; j++)
+                {
+                    if (words[i] == words[j])
+                        tempCount++;
+                }
+
+                if (tempCount > count)
+                {
+                    count = tempCount;
+                    mostFrequent = words[i];
+                }
+
+            }
+            return mostFrequent;
         }
 
         public string SwapEvery2Words()
